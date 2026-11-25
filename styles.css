@@ -280,9 +280,9 @@ input[type="radio"] {
 #grid caption { caption-side: bottom; }
 
 col.col-delete { width: 32px; }
-col.col-task { width: 24%; }
-col.col-time { width: 20%; }
-col.col-status { width: 16%; }
+col.col-status { width: 50%; }
+col.col-task { width: calc((50% - 32px) / 2); }
+col.col-time { width: calc((50% - 32px) / 2); }
 
 #grid th,
 #grid td {
@@ -456,9 +456,6 @@ body.is-dragging .cell-edit { cursor: grabbing; user-select: none; }
   #grid th { font-size: 0.62rem; padding: 4px 3px; }
   .cell-edit, .cell-readonly { padding: 8px 4px; font-size: 0.92rem; }
   .task-cell .cell-edit { padding-left: 22px; }
-  col.col-task { width: 28%; }
-  col.col-time { width: 26%; }
-  col.col-status { width: 16%; }
   .meal-row label { width: 100%; margin-bottom: 0.2rem; }
 }
 
