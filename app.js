@@ -299,13 +299,6 @@
       tr.appendChild(taskTd);
       tr.appendChild(timeTd);
       tr.appendChild(statusTd);
-
-      for (var c = 0; c < 3; c++) {
-        var decor = document.createElement("td");
-        decor.className = "decor";
-        decor.setAttribute("aria-hidden", "true");
-        tr.appendChild(decor);
-      }
       gridBody.appendChild(tr);
     });
   }
