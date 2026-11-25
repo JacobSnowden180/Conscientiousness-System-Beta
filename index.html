@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Conscientiousness System</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect fill='%23fdf6b2' width='16' height='16'/%3E%3Cpath stroke='%23e24b4b' stroke-width='1.2' d='M4 .5v15'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Your perfect day, planned the night before.</h1>
+    <p class="subhead">Most people do their best thinking two to four hours after they wake up.</p>
+    <div class="hero-actions">
+      <button type="button" class="btn btn-primary" id="start-btn">Start your first</button>
+      <a class="btn btn-secondary" href="about.html">Read about</a>
+    </div>
+  </header>
+
+  <main id="create">
+    <noscript>
+      <p>JavaScript is required to edit the schedule.</p>
+    </noscript>
+
+    <section id="mode-choice" class="panel" hidden>
+      <h2 id="mode-heading">How should we build it?</h2>
+      <div class="mode-actions">
+        <button type="button" class="btn btn-primary" id="diy-btn" aria-pressed="false">Build It Yourself</button>
+        <button type="button" class="btn btn-secondary" id="guided-btn" aria-pressed="false">Guided Setup</button>
+      </div>
+    </section>
+
+    <section id="guided" class="panel" hidden aria-labelledby="guided-heading">
+      <h2 id="guided-heading">Guided Setup</h2>
+      <p id="step-label" class="step-label">Step 1 of 8</p>
+      <form id="guided-form" autocomplete="off" novalidate>
+        <div class="step" data-step="0">
+          <h3 tabindex="-1">What time do you wake up?</h3>
+          <label for="wake">Wake time</label>
+          <input id="wake" type="time" value="06:30" required>
+        </div>
+
+        <div class="step" data-step="1" hidden>
+          <h3 tabindex="-1">What time do you go to bed?</h3>
+          <label for="bed">Bedtime</label>
+          <input id="bed" type="time" value="22:30" required>
+          <p id="sleep-note" class="note" hidden>That's under 7 hours of sleep.</p>
+        </div>
+
+        <div class="step" data-step="2" hidden>
+          <h3 tabindex="-1">Which days do you work?</h3>
+          <p class="hint">This builds one schedule. Work-related suggestions are added when you work.</p>
+          <fieldset>
+            <legend>Work days</legend>
+            <div class="choice-grid">
+              <label><input type="checkbox" name="workday" value="mon" checked> Monday</label>
+              <label><input type="checkbox" name="workday" value="tue" checked> Tuesday</label>
+              <label><input type="checkbox" name="workday" value="wed" checked> Wednesday</label>
+              <label><input type="checkbox" name="workday" value="thu" checked> Thursday</label>
+              <label><input type="checkbox" name="workday" value="fri" checked> Friday</label>
+              <label><input type="checkbox" name="workday" value="sat"> Saturday</label>
+              <label><input type="checkbox" name="workday" value="sun"> Sunday</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="step" data-step="3" hidden>
+          <h3 tabindex="-1">When does work start and end?</h3>
+          <div class="time-pair">
+            <div>
+              <label for="work-start">Work start</label>
+              <input id="work-start" type="time" value="09:00" required>
+            </div>
+            <div>
+              <label for="work-end">Work end</label>
+              <input id="work-end" type="time" value="17:00" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-step="4" hidden>
+          <h3 tabindex="-1">How long is the commute?</h3>
+          <label for="commute">Commute minutes</label>
+          <input id="commute" type="number" min="0" step="1" inputmode="numeric" value="20">
+        </div>
+
+        <div class="step" data-step="5" hidden>
+          <h3 tabindex="-1">When do you usually eat?</h3>
+          <p class="hint">Leave a meal blank to use a suggested time. Each one can be skipped.</p>
+          <div class="meal-row">
+            <label for="breakfast">Breakfast</label>
+            <input id="breakfast" type="time">
+            <button type="button" class="btn-text meal-skip" data-for="breakfast">Skip</button>
+          </div>
+          <div class="meal-row">
+            <label for="lunch">Lunch</label>
+            <input id="lunch" type="time">
+            <button type="button" class="btn-text meal-skip" data-for="lunch">Skip</button>
+          </div>
+          <div class="meal-row">
+            <label for="dinner">Dinner</label>
+            <input id="dinner" type="time">
+            <button type="button" class="btn-text meal-skip" data-for="dinner">Skip</button>
+          </div>
+        </div>
+
+        <div class="step" data-step="6" hidden>
+          <h3 tabindex="-1">Do you shower in the morning or at night?</h3>
+          <fieldset>
+            <legend>Shower</legend>
+            <div class="choice-grid">
+              <label><input type="radio" name="shower" value="morning" checked> Morning</label>
+              <label><input type="radio" name="shower" value="night"> Night</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="step" data-step="7" hidden>
+          <h3 tabindex="-1">What else is in the day?</h3>
+          <fieldset>
+            <legend>Extras</legend>
+            <div class="choice-grid">
+              <label><input type="checkbox" id="extra-pets" name="extra" value="pets"> Pets</label>
+              <label><input type="checkbox" id="extra-workout" name="extra" value="workout"> Workout</label>
+              <label><input type="checkbox" id="extra-school" name="extra" value="school"> School or kids</label>
+              <label><input type="checkbox" id="extra-other" name="extra" value="other"> Other</label>
+            </div>
+          </fieldset>
+          <div id="other-field" hidden>
+            <label for="other-text">Other task</label>
+            <input id="other-text" type="text" maxlength="160" autocomplete="off" placeholder="Type the task">
+          </div>
+        </div>
+
+        <div class="guided-nav">
+          <button type="button" class="btn btn-secondary" id="back-btn">Back</button>
+          <button type="button" class="btn btn-primary" id="next-btn">Next</button>
+          <button type="button" class="btn-text" id="skip-btn">Skip to Build It Yourself</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="builder" aria-labelledby="schedule-heading">
+      <div id="pool" class="pool" hidden>
+        <h2>Suggestion pool</h2>
+        <p class="hint">Drag a suggestion onto the schedule, or press +.</p>
+        <ul id="pool-list" aria-label="Suggestion pool"></ul>
+      </div>
+
+      <h2 id="schedule-heading">Schedule</h2>
+      <p class="hint">Click a task or a time to edit it. Drag a cell up or down to reorder that column only. On a phone, use the handle on a task.</p>
+
+      <div id="grid-wrap">
+        <table id="grid" aria-labelledby="schedule-heading">
+          <caption class="sr-only">Daily schedule. Task and By Time are edited separately. Status stays blank.</caption>
+          <colgroup>
+            <col class="col-delete">
+            <col class="col-task">
+            <col class="col-time">
+            <col class="col-status">
+            <col class="col-decor">
+            <col class="col-decor">
+            <col class="col-decor">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="col-delete" scope="col"><span class="sr-only">Delete</span></th>
+              <th class="fn" scope="col">Task</th>
+              <th class="fn" scope="col">By (Time)</th>
+              <th class="fn" scope="col">Status [Yes] OR [No] OR [Late (Time)]</th>
+              <th scope="col">(Task) IF [No] OR IF [Late (Time)]</th>
+              <th scope="col">(Explanation And Plan To Correct)</th>
+              <th scope="col">(Percentage Complete)</th>
+            </tr>
+          </thead>
+          <tbody id="grid-body"></tbody>
+        </table>
+      </div>
+
+      <div class="grid-actions">
+        <button type="button" class="btn btn-secondary" id="add-row">+ Add row</button>
+        <p id="cap-msg" class="cap-msg" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
