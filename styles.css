@@ -408,18 +408,6 @@ body.is-dragging .cell-edit { cursor: grabbing; user-select: none; }
 
 .about { max-width: 40rem; padding-top: 0.5rem; }
 .about a { font-weight: 700; }
-.about h2 { margin-top: 1.4rem; }
-
-.draft-banner {
-  display: block;
-  margin: 0 0 1.25rem;
-  padding: 0.7rem 0.9rem;
-  border: 2px solid #8a2424;
-  background: #fff;
-  color: #8a2424;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-}
 
 .sr-only {
   position: absolute;
